@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name" translatable="false">SoilsMetals</string>
+    <string name="add_placeholder">Add marker</string>
+    <string name="add_information">Add information</string>
+    <string name="metall">Metal</string>
+    <string name="sign">Designation</string>
+    <string name="two_signs_needed">1 or 2 signs</string>
+    <string name="cancel">Cancel</string>
+    <string name="resume">Resume</string>
+    <string name="must_provide_value">Provide value</string>
+    <string name="addition_information">Your note</string>
+    <string name="exit">Exit</string>
+    <string name="yoshkar">Йошкар-Ола</string>
+    <string name="default_uri" translatable="false">android.resource://com.example.soilsmetals/drawable/corrupted</string>
+    <string name="empty" translatable="false"></string>
+    <string name="open">Open</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Remove</string>
+    <string name="street_name">Street name</string>
+    <string name="input_street">Input street name</string>
+    <string name="zc">Total pollution index</string>
+    <string name="containment">Content in mg/kg</string>
+    <string name="limit">Exceeds the MPC ПДК by times</string>
+    <string name="pollution_power">Degree of pollution</string>
+    <string name="pollution_power__normal">Permissible</string>
+    <string name="pollution_power__semidanger">Semi-permissible</string>
+    <string name="pollution_power__danger">Dangerous</string>
+    <string name="pollution_power__height_danger">Very dangerous</string>
+    <string name="kg_mg">mg/kg</string>
+    <string name="more_than_limit">Exceeds the MPC ПДК by</string>
+    <string name="times">times</string>
+    <string name="you_didnt_provide_street">You haven\'t entered the name of location</string>
+    <string name="settings">Settings</string>
+    <string name="account">Account</string>
+    <string name="you_are_signed_in">You are signed in</string>
+    <string name="you_are_not_signed_in">You are not signed in</string>
+    <string name="you_are_able">You are allowed to edit and add maps</string>
+    <string name="you_are_disabled">You will be able to edit and create maps as soon as moderation checks your account</string>
+    <string name="signin_or_signup">You have to sign in or sign up to get access to this function</string>
+    <string name="login">Email</string>
+    <string name="password">Password</string>
+    <string name="provide_correct_address">Incorrect email</string>
+    <string name="provide_correct_password">Wrong password</string>
+    <string name="at_least_6">have to input 6+ signs</string>
+    <string name="sign_out">Sign out</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="fun_unavailable">Function is unavailable</string>
+    <string name="to_signin">Sign in</string>
+    <string name="wait">Wait until moderation verifies\nyour account\n(Maybe you have to reauthenticate)</string>
+    <string name="create_map">Add map</string>
+    <string name="exit_edit">End editing</string>
+    <string name="create_header">Create a new map</string>
+    <string name="name">Name</string>
+    <string name="select_picture">Choose image</string>
+    <string name="email_badly_formatted">The email address is badly formatted.</string>
+    <string name="email_is_not_registered">There is no user record corresponding to this identifier. The user may have been deleted.</string>
+    <string name="wrong_password">The password is invalid or the user does not have a password.</string>
+    <string name="invalid_password">The given password is invalid. [ Password should be at least 6 characters ]</string>
+    <string name="uncathed_exception">Unknown error</string>
+    <string name="you_are_in_editing">You are in edit mode</string>
+    <string name="title">Soils.Metals</string>
+    <string name="language">Language</string>
+    <string name="language_en">English</string>
+    <string name="language_ru">Russian</string>
+    <string name="theme">Theme</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="check">Check your access</string>
+    <string name="have_to_connect">You have to connect to the Internet</string>
+</resources>

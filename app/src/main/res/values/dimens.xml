@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="simple_padding">18dp</dimen>
+    <dimen name="simple_small_padding">10dp</dimen>
+    <dimen name="bottom_bar">60dp</dimen>
+    <dimen name="top_bar">70dp</dimen>
+    <dimen name="top_bar__extended">120dp</dimen>
+    <dimen name="icons">25dp</dimen>
+    <dimen name="small_input">170dp</dimen>
+    <dimen name="large_input">300dp</dimen>
+    <dimen name="default_roundness">25dp</dimen>
+    <dimen name="big_default_roundness">40dp</dimen>
+    <dimen name="card_picture_size">120dp</dimen>
+    <dimen name="card_height">200dp</dimen>
+    <dimen name="card_width">380dp</dimen>
+    <dimen name="sign_movement">45dp</dimen>
+    <dimen name="compensation">38dp</dimen>
+    <dimen name="max_screen_width">400dp</dimen>
+    <dimen name="compensation_offset_x">29.2dp</dimen>
+    <dimen name="compensation_offset_y">24dp</dimen>
+</resources>

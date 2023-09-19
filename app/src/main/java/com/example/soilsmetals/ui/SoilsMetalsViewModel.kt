@@ -237,10 +237,10 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
         }
     }
 
-    private fun updateLoading() {
+    private fun updateLoading(bool: Boolean? = null) {
         uiState.update {
             it.copy(
-                loading = !uiState.value.loading
+                loading = bool ?: !uiState.value.loading
             )
         }
     }
@@ -595,6 +595,7 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
 
     private fun startRequestToCreateDecoyAtDirectory(path: String) {
         viewModelScope.launch {
+            updateLoading(true)
             mapsRepository.requestToCreateDocumentAtDirectory(
                 path,
                 uiState.value.mapName,
@@ -609,6 +610,7 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
                                 ?: Uri.parse(context().getString(R.string.default_uri))
                         )
                             .addOnSuccessListener {
+                                updateLoading(false)
                                 updateRequestedDocument(true)
                             }
                             .addOnFailureListener {
@@ -635,6 +637,7 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
     }
 
     fun startRequestToReplaceThisFileData(path: String, name: String) {
+        updateLoading(true)
         val newFile =
             File(Environment.getExternalStorageDirectory().absolutePath + "/Download", "$name.png")
         if (newFile.exists()) {
@@ -644,6 +647,7 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
         viewModelScope.launch {
             mapsRepository.requestToReplaceThisFileData(path, name, newFile)
                 .addOnSuccessListener {
+                    updateLoading(false)
                     updateRequestedDocument(true)
                 }
                 .addOnFailureListener {

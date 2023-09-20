@@ -50,7 +50,8 @@ fun UniversalCard(
     actionOpen: () -> Unit,
     actionEdit: () -> Unit,
     actionDelete: () -> Unit,
-    viewModel: SoilsMetalsViewModel
+    viewModel: SoilsMetalsViewModel,
+    isLoaded: Boolean
 ) {
     var isExtended by rememberSaveable { mutableStateOf(false) }
     val translation by animateDpAsState(
@@ -120,7 +121,10 @@ fun UniversalCard(
                         style = MaterialTheme.typography.displaySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    Button(onClick = actionOpen) {
+                    Button(
+                        onClick = actionOpen,
+                        enabled = isLoaded
+                    ) {
                         Text(
                             stringResource(R.string.open)
                         )

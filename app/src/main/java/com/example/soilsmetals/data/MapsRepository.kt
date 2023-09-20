@@ -28,7 +28,6 @@ interface MapsRepository {
 
     suspend fun requestToUploadImageAtDirectory(path: String, name: String, uri: Uri): UploadTask
     suspend fun requestToReplaceThisFileData(
-        path: String,
         name: String,
         file: File
     ): FileDownloadTask
@@ -85,11 +84,10 @@ class NetworkMapsRepository(private val context: Context) : MapsRepository {
     }
 
     override suspend fun requestToReplaceThisFileData(
-        path: String,
         name: String,
         file: File
     ): FileDownloadTask {
-        return firestorageRef.child("$path/$name.png").getFile(file)
+        return firestorageRef.child("Maps/$name.png").getFile(file)
     }
 
     override suspend fun requestToDeleteDocumentAtDirectory(

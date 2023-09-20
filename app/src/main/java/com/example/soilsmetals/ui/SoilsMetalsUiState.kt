@@ -16,6 +16,8 @@ data class SoilsMetalsUiState(
     val requestedDocumentsVerification: QuerySnapshot? = null,
     val loading: Boolean = false,
     val authOperation: Boolean = false,
+    val corruptedMaps: List<String> = listOf(),
+    val loadedMaps: List<String> = listOf(),
 
     // addInformationScreen
     val streetName: String = "",
@@ -34,6 +36,7 @@ data class SoilsMetalsUiState(
     val editMode: Boolean = false,
     val readMode: Boolean = false,
     val showDialog: Boolean = false,
+    val placeholdersVisible: Boolean = true,
 
     // add decoy screen
     val mapName: String = "",

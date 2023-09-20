@@ -55,7 +55,7 @@ fun CollectionOfMapsScreen(
             }
 
             for (elem in uiState.requestedDocumentsCollectionOfMaps) {
-                viewModel.startRequestToReplaceThisFileData("Maps", elem.id)
+                viewModel.startRequestToReplaceThisFileData(elem.id)
                 item {
                     UniversalCard(
                         uri = File(
@@ -96,7 +96,8 @@ fun CollectionOfMapsScreen(
                                 viewModel.updateShowDialog()
                             }
                         },
-                        viewModel = viewModel
+                        viewModel = viewModel,
+                        elem.id in uiState.loadedMaps
                     )
                 }
             }

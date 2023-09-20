@@ -21,6 +21,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Build
 import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material.icons.rounded.Visibility
+import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -86,7 +88,9 @@ fun SoilsMetalsApp(
             ) {
                 Text(
                     text = stringResource(R.string.title),
-                    style = if ((AppCompatDelegate.getApplicationLocales()[0]?.language ?: Locale.current.language) == "en")
+                    style = if ((AppCompatDelegate.getApplicationLocales()[0]?.language
+                            ?: Locale.current.language) == "en"
+                    )
                         MaterialTheme.typography.headlineMedium
                     else MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onTertiaryContainer,
@@ -111,13 +115,29 @@ fun SoilsMetalsApp(
                             ) {
                                 Text(
                                     when (navController.currentDestination!!.route!!) {
-                                        SoilsMetalsViewModel.Screens.CurrentMap.name -> stringResource(R.string.exit_edit)
+                                        SoilsMetalsViewModel.Screens.CurrentMap.name -> stringResource(
+                                            R.string.exit_edit
+                                        )
 
-                                        SoilsMetalsViewModel.Screens.AddInformation.name -> stringResource(R.string.cancel)
-                                        SoilsMetalsViewModel.Screens.AddDecoy.name -> stringResource(R.string.cancel)
-                                        SoilsMetalsViewModel.Screens.AddPlaceholders.name -> stringResource(R.string.cancel)
-                                        SoilsMetalsViewModel.Screens.CollectionOfMaps.name -> stringResource(R.string.exit)
-                                        SoilsMetalsViewModel.Screens.Settings.name -> stringResource(R.string.empty)
+                                        SoilsMetalsViewModel.Screens.AddInformation.name -> stringResource(
+                                            R.string.cancel
+                                        )
+
+                                        SoilsMetalsViewModel.Screens.AddDecoy.name -> stringResource(
+                                            R.string.cancel
+                                        )
+
+                                        SoilsMetalsViewModel.Screens.AddPlaceholders.name -> stringResource(
+                                            R.string.cancel
+                                        )
+
+                                        SoilsMetalsViewModel.Screens.CollectionOfMaps.name -> stringResource(
+                                            R.string.exit
+                                        )
+
+                                        SoilsMetalsViewModel.Screens.Settings.name -> stringResource(
+                                            R.string.empty
+                                        )
 
                                         else -> {
                                             ""
@@ -137,14 +157,29 @@ fun SoilsMetalsApp(
                             ) {
                                 Text(
                                     when (navController.currentDestination!!.route!!) {
-                                        SoilsMetalsViewModel.Screens.CurrentMap.name -> stringResource(R.string.add_placeholder)
+                                        SoilsMetalsViewModel.Screens.CurrentMap.name -> stringResource(
+                                            R.string.add_placeholder
+                                        )
 
-                                        SoilsMetalsViewModel.Screens.AddInformation.name -> stringResource(R.string.resume)
-                                        SoilsMetalsViewModel.Screens.AddDecoy.name -> stringResource(R.string.resume)
-                                        SoilsMetalsViewModel.Screens.AddPlaceholders.name -> stringResource(R.string.resume)
-                                        SoilsMetalsViewModel.Screens.CollectionOfMaps.name -> stringResource(R.string.create_map)
+                                        SoilsMetalsViewModel.Screens.AddInformation.name -> stringResource(
+                                            R.string.resume
+                                        )
 
-                                        SoilsMetalsViewModel.Screens.Settings.name -> stringResource(R.string.check)
+                                        SoilsMetalsViewModel.Screens.AddDecoy.name -> stringResource(
+                                            R.string.resume
+                                        )
+
+                                        SoilsMetalsViewModel.Screens.AddPlaceholders.name -> stringResource(
+                                            R.string.resume
+                                        )
+
+                                        SoilsMetalsViewModel.Screens.CollectionOfMaps.name -> stringResource(
+                                            R.string.create_map
+                                        )
+
+                                        SoilsMetalsViewModel.Screens.Settings.name -> stringResource(
+                                            R.string.check
+                                        )
 
                                         else -> {
                                             ""
@@ -213,6 +248,20 @@ fun SoilsMetalsApp(
                     tint = MaterialTheme.colorScheme.onTertiaryContainer,
                     modifier = Modifier.size(dimensionResource(R.dimen.icons))
                 )
+            }
+            if (navController.currentDestination?.route == SoilsMetalsViewModel.Screens.CurrentMap.name) {
+                IconButton(
+                    onClick = {
+                        viewModel.updatePlaceholdersVisibility()
+                    }
+                ) {
+                    Icon(
+                        if (uiState.placeholdersVisible.not()) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                        modifier = Modifier.size(dimensionResource(R.dimen.icons))
+                    )
+                }
             }
         }
 

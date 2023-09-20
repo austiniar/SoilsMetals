@@ -237,10 +237,10 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
         }
     }
 
-    private fun updateLoading(bool: Boolean? = null) {
+    private fun updateLoading() {
         uiState.update {
             it.copy(
-                loading = bool ?: !uiState.value.loading
+                loading = !uiState.value.loading
             )
         }
     }
@@ -332,6 +332,12 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
             it.copy(
                 editMode = value
             )
+        }
+    }
+
+    fun updatePlaceholdersVisibility() {
+        uiState.update {
+            it.copy(placeholdersVisible = uiState.value.placeholdersVisible.not())
         }
     }
 
@@ -595,7 +601,6 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
 
     private fun startRequestToCreateDecoyAtDirectory(path: String) {
         viewModelScope.launch {
-            updateLoading(true)
             mapsRepository.requestToCreateDocumentAtDirectory(
                 path,
                 uiState.value.mapName,
@@ -610,7 +615,6 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
                                 ?: Uri.parse(context().getString(R.string.default_uri))
                         )
                             .addOnSuccessListener {
-                                updateLoading(false)
                                 updateRequestedDocument(true)
                             }
                             .addOnFailureListener {
@@ -636,23 +640,32 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
         }
     }
 
-    fun startRequestToReplaceThisFileData(path: String, name: String) {
-        updateLoading(true)
+    fun startRequestToReplaceThisFileData(name: String) {
         val newFile =
             File(Environment.getExternalStorageDirectory().absolutePath + "/Download", "$name.png")
         if (newFile.exists()) {
             return
         }
-        newFile.createNewFile()
-        viewModelScope.launch {
-            mapsRepository.requestToReplaceThisFileData(path, name, newFile)
-                .addOnSuccessListener {
-                    updateLoading(false)
-                    updateRequestedDocument(true)
-                }
-                .addOnFailureListener {
-                    updateShowDialog()
-                }
+        if (name !in uiState.value.corruptedMaps) {
+            newFile.createNewFile()
+            viewModelScope.launch {
+                mapsRepository.requestToReplaceThisFileData(name, newFile)
+                    .addOnSuccessListener {
+                        updateRequestedDocument(true)
+                        uiState.update {
+                            it.copy(
+                                loadedMaps = uiState.value.loadedMaps + listOf(name)
+                            )
+                        }
+                    }
+                    .addOnFailureListener {
+                        uiState.update {
+                            it.copy(
+                                corruptedMaps = uiState.value.corruptedMaps + listOf(name)
+                            )
+                        }
+                    }
+            }
         }
     }
 

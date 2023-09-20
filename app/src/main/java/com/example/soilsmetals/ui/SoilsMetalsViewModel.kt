@@ -644,6 +644,11 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
         val newFile =
             File(Environment.getExternalStorageDirectory().absolutePath + "/Download", "$name.png")
         if (newFile.exists()) {
+            uiState.update {
+                it.copy(
+                    loadedMaps = uiState.value.loadedMaps + listOf(name)
+                )
+            }
             return
         }
         if (name !in uiState.value.corruptedMaps) {

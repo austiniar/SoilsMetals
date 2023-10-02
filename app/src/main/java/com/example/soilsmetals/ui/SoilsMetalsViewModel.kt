@@ -517,6 +517,12 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
         }
     }
 
+    fun cutValues() {
+        uiState.update {
+            it.copy(values = uiState.value.values.slice(0..uiState.value.values.lastIndex - 5))
+        }
+    }
+
     fun updateUserPopulatingValuesWith(document: DocumentSnapshot) {
         uiState.update {
             it.copy(

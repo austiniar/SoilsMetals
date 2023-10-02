@@ -177,6 +177,9 @@ fun CurrentMapScreen(
     }
 
     if (uiState.readMode) {
+        if (uiState.values.last().isBlank()) {
+            viewModel.cutValues()
+        }
         Column(
             modifier = Modifier
                 .fillMaxSize()

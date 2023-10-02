@@ -29,6 +29,9 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
     val uiState = MutableStateFlow(SoilsMetalsUiState())
     val positionsCount = 5
 
+    private var lastUnhandledQuery: String = ""
+    private var loading: Boolean = false
+
     enum class Screens {
         CurrentMap,
         CollectionOfMaps,
@@ -238,11 +241,7 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
     }
 
     private fun updateLoading() {
-        uiState.update {
-            it.copy(
-                loading = !uiState.value.loading
-            )
-        }
+        loading = !loading
     }
 
     private fun updateDecoyInformation() {
@@ -527,11 +526,18 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
                 pointsAsListOfOffsets = parseDoubles(document.get("points") as ArrayList<Double>)
             )
         }
-        val size = uiState.value.values.lastIndex
+        val size = uiState.value.values.count()
+        val errors = mutableListOf<Boolean>()
+        val errorMessages = mutableListOf<Int?>()
+        for (i in 1..size + 5) {
+            errors.add(false)
+            errorMessages.add(null)
+        }
         uiState.update {
             it.copy(
-                errors = uiState.value.errors.slice(0..size),
-                errorMessages = uiState.value.errorMessages.slice(0..size)
+                values = uiState.value.values + listOf("", "", "", "", ""),
+                errors = errors,
+                errorMessages = errorMessages
             )
         }
     }
@@ -547,9 +553,12 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
     }
 
     fun startRequestAllDocumentsAtDirectory(path: String, parameter: Int) {
-        if (!uiState.value.loading) {
+        if (!loading) {
+            lastUnhandledQuery = ""
             updateLoading()
-            updateAuthOperationStatus(true)
+            if (parameter == 2) {
+                updateAuthOperationStatus(true)
+            }
             viewModelScope.launch {
                 mapsRepository.requestAllDocumentsAtDirectory(path)
                     .addOnSuccessListener { querySnapshot ->
@@ -571,13 +580,29 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
                             }
                         }
                         updateLoading()
-                        updateAuthOperationStatus(false)
+                        if (parameter == 2) {
+                            updateAuthOperationStatus(false)
+                        }
+                        if (lastUnhandledQuery.isNotBlank()) {
+                            startRequestAllDocumentsAtDirectory(
+                                lastUnhandledQuery.split(".split()")[0],
+                                lastUnhandledQuery.split(".split()")[1].toInt()
+                            )
+                        }
                     }
                     .addOnFailureListener {
                         updateShowDialog()
                         updateLoading()
+                        if (lastUnhandledQuery.isNotBlank()) {
+                            startRequestAllDocumentsAtDirectory(
+                                lastUnhandledQuery.split(".split()")[0],
+                                lastUnhandledQuery.split(".split()")[1].toInt()
+                            )
+                        }
                     }
             }
+        } else {
+            lastUnhandledQuery = "$path.split()${parameter}"
         }
     }
 

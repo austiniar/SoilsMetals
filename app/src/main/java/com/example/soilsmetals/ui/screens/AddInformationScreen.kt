@@ -36,10 +36,8 @@ fun AddInformationScreen(
     uiState: SoilsMetalsUiState,
     navController: NavHostController
 ) {
-    if (uiState.values.last().isNotBlank() && !uiState.editMode) {
+    if (!uiState.editMode) {
         viewModel.clearCurrentMapValues()
-    } else if (uiState.values.last().isNotBlank()) {
-        viewModel.updateValueInValues(uiState.values.lastIndex, uiState.values.last())
     }
 
     Column(

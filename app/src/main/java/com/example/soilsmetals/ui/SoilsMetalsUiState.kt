@@ -14,7 +14,6 @@ data class SoilsMetalsUiState(
     val requestedDocumentsCurrentMap: QuerySnapshot? = null,
     val requestedDocumentsCollectionOfMaps: QuerySnapshot? = null,
     val requestedDocumentsVerification: QuerySnapshot? = null,
-    val loading: Boolean = false,
     val authOperation: Boolean = false,
     val corruptedMaps: List<String> = listOf(),
     val loadedMaps: List<String> = listOf(),

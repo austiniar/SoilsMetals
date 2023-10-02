@@ -24,7 +24,7 @@
     <string name="pollution_power__semidanger">Умеренно опасная</string>
     <string name="pollution_power__danger">Опасная</string>
     <string name="pollution_power__height_danger">Чрезвычайно опасная</string>
-    <string name="kg_mg">кг/мг</string>
+    <string name="kg_mg">мг/кг</string>
     <string name="more_than_limit">Превышает ПДК в</string>
     <string name="times">раз</string>
     <string name="you_didnt_provide_street">Вы не ввели название местности</string>

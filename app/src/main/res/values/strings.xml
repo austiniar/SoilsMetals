@@ -28,7 +28,7 @@
     <string name="pollution_power__danger">Dangerous</string>
     <string name="pollution_power__height_danger">Very dangerous</string>
     <string name="kg_mg">mg/kg</string>
-    <string name="more_than_limit">Exceeds the MPC ПДК by</string>
+    <string name="more_than_limit">Exceeds the MPC by</string>
     <string name="times">times</string>
     <string name="you_didnt_provide_street">You haven\'t entered the name of location</string>
     <string name="settings">Settings</string>

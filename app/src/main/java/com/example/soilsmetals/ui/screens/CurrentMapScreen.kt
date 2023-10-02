@@ -234,7 +234,7 @@ fun CurrentMapScreen(
                         .padding(dimensionResource(R.dimen.simple_padding))
                 ) {
                     Text(
-                        text = viewModel.calculateZc().toString(),
+                        text = String.format("%.2f", viewModel.calculateZc()),
                         style = MaterialTheme.typography.displaySmall
                     )
                     Column(

@@ -183,6 +183,7 @@ class SoilsMetalsViewModel(val mapsRepository: MapsRepository) : ViewModel() {
         when (navController.currentDestination!!.route!!) {
             Screens.AddInformation.name -> {
                 navAction(Screens.CurrentMap.name)
+                clearCurrentMapValues()
             }
 
             Screens.CurrentMap.name -> {

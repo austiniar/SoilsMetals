@@ -1,5 +1,6 @@
 package com.example.soilsmetals.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -36,10 +37,6 @@ fun AddInformationScreen(
     uiState: SoilsMetalsUiState,
     navController: NavHostController
 ) {
-    if (!uiState.editMode) {
-        viewModel.clearCurrentMapValues()
-    }
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
